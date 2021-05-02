@@ -1,5 +1,5 @@
 
-import Reqct from "react";
+import React from "react";
 import SendWithGet from "../components/send/get"
 
 function SendToBack() {
