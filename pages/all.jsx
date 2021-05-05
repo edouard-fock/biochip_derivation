@@ -7,6 +7,8 @@ function All() {
             <EdiCmpnt />
             <p>Accompagne de : </p>
             <HugoCmpnt />
+
+            <Edicpmnt/>
         </>
     )
 }
