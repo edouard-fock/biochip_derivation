@@ -3,8 +3,9 @@ import EdiCmpnt from "../components/edi";
 function Alone() {
     return (
         <>
+        <h1>Concentration de glucose</h1>
             <EdiCmpnt />
-            <p>Accompagne de personne MDRRRR</p>
+
         </>
     )
 }

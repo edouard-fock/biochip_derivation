@@ -4,86 +4,8 @@ import Chart from "react-google-charts";
 function EdiCmpnt () {
     return (
         <>
-            <p>
-                Je suis le component edouard
-            </p>
+        
             <div style={{ display: 'flex', maxWidth: 900 }}>
-  <Chart
-    width={400}
-    height={300}
-    chartType="ColumnChart"
-    loader={<div>Loading Chart</div>}
-    data={[
-      ['City', '2010 Population', '2000 Population'],
-      ['New York City, NY', 8175000, 8008000],
-      ['Los Angeles, CA', 3792000, 3694000],
-      ['Chicago, IL', 2695000, 2896000],
-      ['Houston, TX', 2099000, 1953000],
-      ['Philadelphia, PA', 1526000, 1517000],
-    ]}
-    options={{
-      title: 'Population of Largest U.S. Cities',
-      chartArea: { width: '30%' },
-      hAxis: {
-        title: 'Total Population',
-        minValue: 0,
-      },
-      vAxis: {
-        title: 'City',
-      },
-    }}
-    legendToggle
-  />
-  <Chart
-    width={400}
-    height={'300px'}
-    chartType="AreaChart"
-    loader={<div>Loading Chart</div>}
-    data={[
-      ['Year', 'Sales', 'Expenses'],
-      ['2013', 1000, 400],
-      ['2014', 1170, 460],
-      ['2015', 660, 1120],
-      ['2016', 1030, 540],
-    ]}
-    options={{
-      title: 'Company Performance',
-      hAxis: { title: 'Year', titleTextStyle: { color: '#333' } },
-      vAxis: { minValue: 0 },
-      // For the legend to fit, we make the chart area smaller
-      chartArea: { width: '50%', height: '70%' },
-      // lineWidth: 25
-    }}
-  />
-</div>
-<div style={{ display: 'flex' }}>
-  <Chart
-    width={400}
-    height={'300px'}
-    chartType="BubbleChart"
-    loader={<div>Loading Chart</div>}
-    data={[
-      ['ID', 'Life Expectancy', 'Fertility Rate', 'Region', 'Population'],
-      ['CAN', 80.66, 1.67, 'North America', 33739900],
-      ['DEU', 79.84, 1.36, 'Europe', 81902307],
-      ['DNK', 78.6, 1.84, 'Europe', 5523095],
-      ['EGY', 72.73, 2.78, 'Middle East', 79716203],
-      ['GBR', 80.05, 2, 'Europe', 61801570],
-      ['IRN', 72.49, 1.7, 'Middle East', 73137148],
-      ['IRQ', 68.09, 4.77, 'Middle East', 31090763],
-      ['ISR', 81.55, 2.96, 'Middle East', 7485600],
-      ['RUS', 68.6, 1.54, 'Europe', 141850000],
-      ['USA', 78.09, 2.05, 'North America', 307007000],
-    ]}
-    options={{
-      title:
-        'Correlation between life expectancy, fertility rate ' +
-        'and population of some world countries (2010)',
-      hAxis: { title: 'Life Expectancy' },
-      vAxis: { title: 'Fertility Rate' },
-      bubble: { textStyle: { fontSize: 11 } },
-    }}
-  />
   <Chart
     width={400}
     height={300}
