@@ -1,7 +1,7 @@
 import React from 'react';
 import useStyle from './style';
 import GoogleChart from 'react-google-charts';
-import Button from '@material-ui/core/Button';
+import {Button} from '@material-ui/core';
 import axios from 'axios';
 
 const Chart = (): JSX.Element => {
@@ -9,7 +9,7 @@ const Chart = (): JSX.Element => {
   let data = [];
 
   const callApi = () => {
-    axios('/api/pull?range=10')
+    axios('api/pull?range=10')
         .then((res: any) => {
           data = res.data;
           console.log(data);
@@ -21,37 +21,59 @@ const Chart = (): JSX.Element => {
 
   return (
     <>
-      <Button onClick={callApi} />
+      <Button onClick={callApi}>Bonjour</Button>
       <div className={style.card}>
         <GoogleChart
-          width={400}
-          height={300}
+          width={'100%'}
           chartType="LineChart"
           loader={<div>Loading Chart</div>}
           data={[
-            [
-              {type: 'number', label: 'x'},
-              {type: 'number', label: 'values'},
-              {id: 'i0', type: 'number', role: 'interval'},
-              {id: 'i1', type: 'number', role: 'interval'},
-              {id: 'i2', type: 'number', role: 'interval'},
-              {id: 'i2', type: 'number', role: 'interval'},
-              {id: 'i2', type: 'number', role: 'interval'},
-              {id: 'i2', type: 'number', role: 'interval'},
-            ],
-            [1, 100, 90, 110, 85, 96, 104, 120],
-            [2, 120, 95, 130, 90, 113, 124, 140],
-            [3, 130, 105, 140, 100, 117, 133, 139],
-            [4, 90, 85, 95, 85, 88, 92, 95],
-            [5, 70, 74, 63, 67, 69, 70, 72],
-            [6, 30, 39, 22, 21, 28, 34, 40],
-            [7, 80, 77, 83, 70, 77, 85, 90],
-            [8, 100, 90, 110, 85, 95, 102, 110],
+            ['Date', 'Value'],
+            [new Date(1996, 1, 1), 2000 * Math.random()],
+            [new Date(1997, 1, 1), 2000 * Math.random()],
+            [new Date(1998, 1, 1), 2000 * Math.random()],
+            [new Date(1999, 1, 1), 2000 * Math.random()],
+            [new Date(2000, 1, 1), 2000 * Math.random()],
+            [new Date(2001, 1, 1), 2000 * Math.random()],
+            [new Date(2002, 1, 1), 2000 * Math.random()],
+            [new Date(2003, 1, 1), 2000 * Math.random()],
+            [new Date(2004, 1, 1), 2000 * Math.random()],
+            [new Date(2005, 1, 1), 2000 * Math.random()],
+            [new Date(2006, 1, 1), 2000 * Math.random()],
+            [new Date(2007, 1, 1), 2000 * Math.random()],
+            [new Date(2008, 1, 1), 2000 * Math.random()],
+            [new Date(2009, 1, 1), 2000 * Math.random()],
           ]}
           options={{
-            intervals: {style: 'sticks'},
-            legend: 'none',
+            // Use the same chart area width as the control for axis alignment.
+            chartArea: {height: '80%', width: '90%'},
+            hAxis: {slantedText: false},
+            vAxis: {viewWindow: {min: 0, max: 2000}},
+            legend: {position: 'none'},
           }}
+          rootProps={{'data-testid': '3'}}
+          chartPackages={['corechart', 'controls']}
+          controls={[
+            {
+              controlType: 'ChartRangeFilter',
+              options: {
+                filterColumnIndex: 0,
+                ui: {
+                  chartType: 'LineChart',
+                  chartOptions: {
+                    chartArea: {width: '90%', height: '50%'},
+                    hAxis: {baselineColor: 'none'},
+                  },
+                },
+              },
+              controlPosition: 'bottom',
+              controlWrapperParams: {
+                state: {
+                  range: {start: new Date(1997, 1, 9), end: new Date(2002, 2, 20)},
+                },
+              },
+            },
+          ]}
         />
       </div>
     </>
