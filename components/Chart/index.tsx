@@ -1,11 +1,13 @@
 import React from "react";
+import useStyle from './style';
 
 const Chart = () => {
-return (
-  <>
-    
-  </>
-);
+  const style = useStyle();
+  return (
+    <>
+      
+    </>
+  );
 };
 
 export default Chart;

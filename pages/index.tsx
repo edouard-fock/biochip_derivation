@@ -1,11 +1,11 @@
 import Chart from "../components/Chart";
 
-function All() {
+const Index = () => {
   return (
   <>
     <Chart />
   </>
   )
-}
+};
 
-export default All;
+export default Index;
