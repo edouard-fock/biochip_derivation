@@ -10,6 +10,10 @@ const useStyle = makeStyles(() =>
       'width': '50%',
       'height': '50%',
     },
+    'Button': {
+      'text-align': 'center',
+      'paddingTop': '5%',
+    },
     'cardMedia': {
       'paddingTop': '56.25%',
     },

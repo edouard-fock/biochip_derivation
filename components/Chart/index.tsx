@@ -21,7 +21,9 @@ const Chart = (): JSX.Element => {
 
   return (
     <>
-      <Button onClick={callApi}>Bonjour</Button>
+      <div className ={style.Button}>
+        <Button onClick={callApi} variant="outlined">Mise à jour des données</Button>
+      </div>
       <div className={style.card}>
         <GoogleChart
           width={'100%'}
