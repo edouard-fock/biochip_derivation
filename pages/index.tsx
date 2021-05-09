@@ -1,11 +1,12 @@
-import Chart from "../components/Chart";
+import React from 'react';
+import Chart from 'components/Chart';
 
-const Index = () => {
+const Index = (): JSX.Element => {
   return (
-  <>
-    <Chart />
-  </>
-  )
+    <>
+      <Chart />
+    </>
+  );
 };
 
 export default Index;

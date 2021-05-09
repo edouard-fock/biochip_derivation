@@ -3,9 +3,8 @@ import {makeStyles, createStyles} from '@material-ui/core/styles';
 const useStyle = makeStyles(() =>
   createStyles({
     'card': {
-      'height': '100%',
-      'display': 'flex',
-      'flexDirection': 'column',
+      'color': 'red',
+      'backgroundColor': 'black',
     },
     'cardMedia': {
       'paddingTop': '56.25%',
