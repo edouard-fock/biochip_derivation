@@ -1,6 +1,6 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
 
-const handler = (req:NextApiRequest, res:NextApiResponse) => {
+const handler = (req:NextApiRequest, res:NextApiResponse): void => {
   const {range} = req.query;
   const data = [
     {
@@ -13,9 +13,9 @@ const handler = (req:NextApiRequest, res:NextApiResponse) => {
     },
   ];
   if (range == undefined) {
-    res.status(400).json({message: 'usage: /api/pull?range=number'});
+    return res.status(400).json({message: 'usage: /api/pull?range=number'});
   }
-  res.status(200).json({...data});
+  return res.status(200).json({...data});
 };
 
 export default handler;

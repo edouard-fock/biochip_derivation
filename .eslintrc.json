@@ -29,6 +29,7 @@
   ],
   "rules": {
     "@typescript-eslint/no-explicit-any": "warn",
+    "max-len": ["warn", { "code": 100 }],
     "linebreak-style": "off",
     "require-jsdoc": "off"
   }
