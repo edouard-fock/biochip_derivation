@@ -4,8 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "build": "yarn check-all && next build",
+    "start": "next start",
+    "export": "yarn build && next export -o public/ app/",
+    "check-type": "tsc --noEmit",
+    "check-lint": "eslint . --ext .js,.ts,.jsx,.tsx",
+    "check-all": "yarn check-lint && yarn check-type"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.4",
@@ -15,5 +19,14 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-google-charts": "^3.0.15"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.22.1",
+    "@typescript-eslint/parser": "^4.22.1",
+    "eslint": "^7.26.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-react": "^7.23.2",
+    "typescript": "^4.2.4"
   }
 }
