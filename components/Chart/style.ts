@@ -4,7 +4,7 @@ const useStyle = makeStyles(() =>
   createStyles({
     'card': {
       'color': 'red',
-      'backgroundColor': 'black',
+      'text-align': 'center',
     },
     'cardMedia': {
       'paddingTop': '56.25%',

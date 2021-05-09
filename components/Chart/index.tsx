@@ -1,12 +1,27 @@
 import React from 'react';
 import useStyle from './style';
 import GoogleChart from 'react-google-charts';
+import Button from '@material-ui/core/Button';
+import axios from 'axios';
 
 const Chart = (): JSX.Element => {
   const style = useStyle();
+  let data = [];
+
+  const callApi = () => {
+    axios('/api/pull?range=10')
+        .then((res: any) => {
+          data = res.data;
+          console.log(data);
+        })
+        .catch((error: any) => {
+          console.error(error);
+        });
+  };
 
   return (
     <>
+      <Button onClick={callApi} />
       <div className={style.card}>
         <GoogleChart
           width={400}
