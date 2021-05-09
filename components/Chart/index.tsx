@@ -15,14 +15,14 @@ const Chart = (): JSX.Element => {
           loader={<div>Loading Chart</div>}
           data={[
             [
-              {type: 'number', label: 'x' },
-              {type: 'number', label: 'values' },
-              {id: 'i0', type: 'number', role: 'interval' },
-              {id: 'i1', type: 'number', role: 'interval' },
-              {id: 'i2', type: 'number', role: 'interval' },
-              {id: 'i2', type: 'number', role: 'interval' },
-              {id: 'i2', type: 'number', role: 'interval' },
-              {id: 'i2', type: 'number', role: 'interval' },
+              {type: 'number', label: 'x'},
+              {type: 'number', label: 'values'},
+              {id: 'i0', type: 'number', role: 'interval'},
+              {id: 'i1', type: 'number', role: 'interval'},
+              {id: 'i2', type: 'number', role: 'interval'},
+              {id: 'i2', type: 'number', role: 'interval'},
+              {id: 'i2', type: 'number', role: 'interval'},
+              {id: 'i2', type: 'number', role: 'interval'},
             ],
             [1, 100, 90, 110, 85, 96, 104, 120],
             [2, 120, 95, 130, 90, 113, 124, 140],
