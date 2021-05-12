@@ -6,9 +6,9 @@ const getSql = (): any => {
     host: 'localhost', // Postgres ip address or domain name
     port: 5432, // Postgres server port
     path: '', // unix socket path (usually '/tmp')
-    database: 'coordinates', // Name of database to connect to
-    username: 'root', // Username of database user
-    password: 'toor', // Password of database user
+    database: 'BioChipDerivation', // Name of database to connect to
+    username: 'postgres', // Username of database user
+    password: 'postgres', // Password of database user
     ssl: false, // True, or options for tls.connect
     max: 10, // Max number of connections
     timeout: 0, // Idle connection timeout in seconds
