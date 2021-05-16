@@ -1,18 +1,53 @@
 import React from 'react';
 import useStyle from './style';
 import GoogleChart from 'react-google-charts';
-import {Button} from '@material-ui/core';
+import {Button, Typography} from '@material-ui/core';
 import axios from 'axios';
 
 const Chart = (): JSX.Element => {
   const style = useStyle();
-  let data = [];
+  const [pente, setPente] = React.useState(0);
+  const [data, setData] = React.useState([
+    ['Date', 'Value'],
+    [1, 0],
+    [2, 0],
+    [3, 0],
+    [4, 0],
+    [5, 0],
+    [6, 0],
+    [7, 0],
+    [8, 0],
+    [9, 0],
+    [10, 0],
+    [11, 0],
+    [12, 0],
+    [13, 0],
+    [14, 0],
+  ]);
+
+  const tendance = (array: any[]) => {
+    const largeur = array.length;
+    const deltaY = array[largeur-1][1] - array[1][1];
+    const pente = deltaY / (largeur);
+    setPente(pente);
+  };
 
   const callApi = () => {
-    axios('api/pull?range=10')
+    axios('api/pull?range=30')
         .then((res: any) => {
-          data = res.data;
+          const tmp: any = [
+            ['date', 'Value'],
+          ];
+          res.data.data.forEach((point: any) => {
+            tmp.push([
+              point.x,
+              point.y,
+            ]);
+          });
+          setData(tmp);
           console.log(data);
+          console.log(tmp[18]);
+          tendance(tmp);
         })
         .catch((error: any) => {
           console.error(error);
@@ -29,28 +64,12 @@ const Chart = (): JSX.Element => {
           width={'100%'}
           chartType="LineChart"
           loader={<div>Loading Chart</div>}
-          data={[
-            ['Date', 'Value'],
-            [new Date(1996, 1, 1), 2000 * Math.random()],
-            [new Date(1997, 1, 1), 2000 * Math.random()],
-            [new Date(1998, 1, 1), 2000 * Math.random()],
-            [new Date(1999, 1, 1), 2000 * Math.random()],
-            [new Date(2000, 1, 1), 2000 * Math.random()],
-            [new Date(2001, 1, 1), 2000 * Math.random()],
-            [new Date(2002, 1, 1), 2000 * Math.random()],
-            [new Date(2003, 1, 1), 2000 * Math.random()],
-            [new Date(2004, 1, 1), 2000 * Math.random()],
-            [new Date(2005, 1, 1), 2000 * Math.random()],
-            [new Date(2006, 1, 1), 2000 * Math.random()],
-            [new Date(2007, 1, 1), 2000 * Math.random()],
-            [new Date(2008, 1, 1), 2000 * Math.random()],
-            [new Date(2009, 1, 1), 2000 * Math.random()],
-          ]}
+          data={data}
           options={{
             // Use the same chart area width as the control for axis alignment.
             chartArea: {height: '80%', width: '90%'},
             hAxis: {slantedText: false},
-            vAxis: {viewWindow: {min: 0, max: 2000}},
+            vAxis: {viewWindow: {min: 0, max: 20}},
             legend: {position: 'none'},
           }}
           rootProps={{'data-testid': '3'}}
@@ -71,12 +90,18 @@ const Chart = (): JSX.Element => {
               controlPosition: 'bottom',
               controlWrapperParams: {
                 state: {
-                  range: {start: new Date(1997, 1, 9), end: new Date(2002, 2, 20)},
+                  range: {start: 1, end: 15},
                 },
               },
             },
           ]}
         />
+      </div>
+      <div className ={style.Pente}>
+        <Typography variant="h3">
+          Pente des {data.length} dernières prises de mesure: {pente.toPrecision(2)}
+        </Typography>
+
       </div>
     </>
   );

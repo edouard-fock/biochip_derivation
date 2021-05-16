@@ -3,8 +3,8 @@ const postgres = require('postgres');
 
 const getSql = (): any => {
   const sql = postgres('postgres://username:password@host:port/database', {
-    host: 'localhost', // Postgres ip address or domain name
-    port: 5432, // Postgres server port
+    host: 'saturn.perinazzo.com', // Postgres ip address or domain name
+    port: 45432, // Postgres server port
     path: '', // unix socket path (usually '/tmp')
     database: 'BioChipDerivation', // Name of database to connect to
     username: 'postgres', // Username of database user

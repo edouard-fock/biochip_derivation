@@ -21,6 +21,10 @@ const useStyle = makeStyles(() =>
       'flexGrow': 1,
       'maxHeight': '100px',
     },
+    'Pente': {
+      'text-align': 'center',
+    },
+    
   }),
 );
 
