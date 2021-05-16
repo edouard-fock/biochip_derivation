@@ -68,8 +68,8 @@ const Chart = (): JSX.Element => {
           options={{
             // Use the same chart area width as the control for axis alignment.
             chartArea: {height: '80%', width: '90%'},
-            hAxis: {slantedText: false},
-            vAxis: {viewWindow: {min: 0, max: 20}},
+            hAxis: {slantedText: false, title: 'time'},
+            vAxis: {viewWindow: {min: 0, max: 20}, title: 'mMol'},
             legend: {position: 'none'},
           }}
           rootProps={{'data-testid': '3'}}

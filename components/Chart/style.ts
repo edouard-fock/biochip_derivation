@@ -24,7 +24,6 @@ const useStyle = makeStyles(() =>
     'Pente': {
       'text-align': 'center',
     },
-    
   }),
 );
 
