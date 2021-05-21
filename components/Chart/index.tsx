@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const Chart = (): JSX.Element => {
   const style = useStyle();
-  const [pente, setPente] = React.useState(0);
+  const [pente, setPente] = React.useState(8);
   const [mot, setMot] = React.useState('');
   const [max, setMax] = React.useState(30);
   const [data, setData] = React.useState([
@@ -47,7 +47,6 @@ const Chart = (): JSX.Element => {
       const mot = 'Attention remettre du';
       setMot(mot);
     }
-
   };
 
   const callApi = () => {
@@ -74,6 +73,12 @@ const Chart = (): JSX.Element => {
   return (
     <>
       <div className={style.card}>
+        <p>
+          Cette interface est dôté d&#39;un graphique permettant de visualiser le taux de glucose
+          contenu dans le liquide interstitiel.
+          {'\n'}
+        </p>
+        <p>Clickez sur le bouton de mise à jour des données pour observer ces valeurs</p>
         <div className={style.button}>
           <Button onClick={callApi} color="primary" variant="outlined">
           Mise à jour des données
@@ -86,23 +91,27 @@ const Chart = (): JSX.Element => {
           data={data}
           options={{
             // Use the same chart area width as the control for axis alignment.
-            chartArea: {
-              width: '100%',
-              left: 45,
-              top: 40,
-              right: 45,
-              bottom: 50,
-              backgroundColor: {
-                fill: '#b0dfff',
-                fillOpacity: 0.3},
-              height: 600,
+            backgroundColor: {'fill': '#30363d',
+              'fillOpacity': 0.1,
             },
-            hAxis: {slantedText: false, title: 'time'},
-            vAxis: {viewWindow: {min: 0, max: 100}, title: 'mMol'},
+            chartArea: {
+              'width': '100%',
+              'left': 45,
+              'top': 40,
+              'right': 45,
+              'bottom': 50,
+              'backgroundColor': {
+                'fill': '#b0dfff',
+                'fillOpacity': 0.5},
+              'height': 500,
+            },
+            hAxis: {slantedText: false, title: 'time', format: '', textStyle: {color: 'white'},
+              titleTextStyle: {color: 'white'}},
+            vAxis: {viewWindow: {min: 0, max: 100}, title: 'mMol', textStyle: {color: 'white'},
+              titleTextStyle: {color: 'white'}},
             legend: {position: 'none'},
-            backgroundColor: ' #b0dfff',
           }}
-          rootProps={{'data-testid': '3'}}
+          rootProps={{'data-testid': '8'}}
           chartPackages={['corechart', 'controls']}
           controls={[
             {
@@ -112,13 +121,23 @@ const Chart = (): JSX.Element => {
                 ui: {
                   chartType: 'LineChart',
                   chartOptions: {
-                    chartArea: {height: '150%', width: '100%', left: 5, right: 5, bottom: 25,
-                      backgroundColor: {
-                        fill: '#b0dfff',
-                        fillOpacity: 0.3},
+                    chartArea: {
+                      'width': '100%',
+                      'left': 45,
+                      'top': 40,
+                      'right': 45,
+                      'bottom': 50,
+                      'backgroundColor': {
+                        'fill': '#b0dfff',
+                        'fillOpacity': 0.5},
+                      'height': 500,
                     },
-                    hAxis: {baselineColor: 'red', title: 'time'},
-                    backgroundColor: ' #b0dfff',
+                    hAxis: {baselineColor: 'red', title: 'time', format: '',
+                      textStyle: {color: 'white'},
+                      titleTextStyle: {color: 'white'}},
+                    backgroundColor: {'fill': '#30363d',
+                      'fillOpacity': 0.1,
+                    },
                   },
                 },
               },

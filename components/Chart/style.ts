@@ -6,10 +6,9 @@ const useStyle = makeStyles(() =>
       'text-align': 'center',
       'display': 'block',
       'margin': 'auto',
-      'width': '100%',
-      'height': '100%',
-      'background': 'linear-gradient(90deg, #b0dfff 15%, #b0d7e8 90%)',
-      'padding': '50px',
+      'background': '#30363d',
+      'padding': '5%',
+      'color': 'white',
     },
     'cardMedia': {
       'paddingTop': '56.25%',
@@ -20,7 +19,7 @@ const useStyle = makeStyles(() =>
     },
     'button': {
       'padding': '15px',
-      'background': 'linear-gradient(30deg, #b0dfff 15%, #b0d7e8 90%)',
+      'background': '#30363d',
     },
   }),
 );
