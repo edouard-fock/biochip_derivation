@@ -7,6 +7,8 @@ import axios from 'axios';
 const Chart = (): JSX.Element => {
   const style = useStyle();
   const [pente, setPente] = React.useState(0);
+  const [mot, setMot] = React.useState('');
+  const [max, setMax] = React.useState(30);
   const [data, setData] = React.useState([
     ['Date', 'Value'],
     [1, 0],
@@ -30,6 +32,22 @@ const Chart = (): JSX.Element => {
     const deltaY = array[largeur-1][1] - array[1][1];
     const pente = deltaY / (largeur);
     setPente(pente);
+    const max = Math.max(array[1][1]);
+    console.log(array[1][1]);
+    setMax(max);
+    if (pente > 0 || pente < 5) {
+      const mot = 'Pas de problème de';
+      setMot(mot);
+    }
+    else if (pente > 0 || pente > 5) {
+      const mot = 'Attention trop de ';
+      setMot(mot);
+    }
+    else if (pente < 0 || pente > -5) {
+      const mot = 'Attention remettre du';
+      setMot(mot);
+    }
+
   };
 
   const callApi = () => {
@@ -46,7 +64,6 @@ const Chart = (): JSX.Element => {
           });
           setData(tmp);
           console.log(data);
-          console.log(tmp[18]);
           tendance(tmp);
         })
         .catch((error: any) => {
@@ -56,10 +73,12 @@ const Chart = (): JSX.Element => {
 
   return (
     <>
-      <div className ={style.Button}>
-        <Button onClick={callApi} variant="outlined">Mise à jour des données</Button>
-      </div>
       <div className={style.card}>
+        <div className={style.button}>
+          <Button onClick={callApi} color="primary" variant="outlined">
+          Mise à jour des données
+          </Button>
+        </div>
         <GoogleChart
           width={'100%'}
           chartType="LineChart"
@@ -67,10 +86,21 @@ const Chart = (): JSX.Element => {
           data={data}
           options={{
             // Use the same chart area width as the control for axis alignment.
-            chartArea: {height: '80%', width: '90%'},
+            chartArea: {
+              width: '100%',
+              left: 45,
+              top: 40,
+              right: 45,
+              bottom: 50,
+              backgroundColor: {
+                fill: '#b0dfff',
+                fillOpacity: 0.3},
+              height: 600,
+            },
             hAxis: {slantedText: false, title: 'time'},
-            vAxis: {viewWindow: {min: 0, max: 20}, title: 'mMol'},
+            vAxis: {viewWindow: {min: 0, max: 100}, title: 'mMol'},
             legend: {position: 'none'},
+            backgroundColor: ' #b0dfff',
           }}
           rootProps={{'data-testid': '3'}}
           chartPackages={['corechart', 'controls']}
@@ -82,8 +112,13 @@ const Chart = (): JSX.Element => {
                 ui: {
                   chartType: 'LineChart',
                   chartOptions: {
-                    chartArea: {width: '90%', height: '50%'},
-                    hAxis: {baselineColor: 'none'},
+                    chartArea: {height: '150%', width: '100%', left: 5, right: 5, bottom: 25,
+                      backgroundColor: {
+                        fill: '#b0dfff',
+                        fillOpacity: 0.3},
+                    },
+                    hAxis: {baselineColor: 'red', title: 'time'},
+                    backgroundColor: ' #b0dfff',
                   },
                 },
               },
@@ -96,12 +131,16 @@ const Chart = (): JSX.Element => {
             },
           ]}
         />
-      </div>
-      <div className ={style.Pente}>
-        <Typography variant="h3">
+        <Typography variant="h6">
           Pente des {data.length} dernières prises de mesure: {pente.toPrecision(2)}
+          {'\n'}
         </Typography>
-
+        <Typography>
+          {mot} sucre
+        </Typography>
+        <Typography>
+          Concentration maximum des {data.length} mesures: {max} mMol
+        </Typography>
       </div>
     </>
   );
