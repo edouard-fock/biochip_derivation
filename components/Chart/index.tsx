@@ -6,25 +6,23 @@ import axios from 'axios';
 
 const Chart = (): JSX.Element => {
   const style = useStyle();
-  const [pente, setPente] = React.useState(8);
+  const [pente, setPente] = React.useState(0);
   const [mot, setMot] = React.useState('');
-  const [max, setMax] = React.useState(30);
+  const [max, setMax] = React.useState(0);
   const [data, setData] = React.useState([
     ['Date', 'Value'],
-    [1, 0],
-    [2, 0],
-    [3, 0],
-    [4, 0],
-    [5, 0],
-    [6, 0],
-    [7, 0],
-    [8, 0],
-    [9, 0],
-    [10, 0],
-    [11, 0],
-    [12, 0],
-    [13, 0],
-    [14, 0],
+    [new Date(2014, 0), 0],
+    [new Date(2014, 1), 0],
+    [new Date(2014, 2), 0],
+    [new Date(2014, 3), 0],
+    [new Date(2014, 4), 0],
+    [new Date(2014, 5), 0],
+    [new Date(2014, 6), 0],
+    [new Date(2014, 7), 0],
+    [new Date(2014, 8), 0],
+    [new Date(2014, 9), 0],
+    [new Date(2014, 10), 0],
+    [new Date(2014, 11), 0],
   ]);
 
   const tendance = (array: any[]) => {
@@ -36,15 +34,15 @@ const Chart = (): JSX.Element => {
     console.log(array[1][1]);
     setMax(max);
     if (pente > 0 || pente < 5) {
-      const mot = 'Pas de problème de';
+      const mot = 'Pas de problème de sucre';
       setMot(mot);
     }
     else if (pente > 0 || pente > 5) {
-      const mot = 'Attention trop de ';
+      const mot = 'Attention trop de sucre';
       setMot(mot);
     }
     else if (pente < 0 || pente > -5) {
-      const mot = 'Attention remettre du';
+      const mot = 'Attention remettre du sucre';
       setMot(mot);
     }
   };
@@ -56,8 +54,9 @@ const Chart = (): JSX.Element => {
             ['date', 'Value'],
           ];
           res.data.data.forEach((point: any) => {
+            const d = new Date(point.x);
             tmp.push([
-              point.x,
+              d.getMinutes(),
               point.y,
             ]);
           });
@@ -91,9 +90,7 @@ const Chart = (): JSX.Element => {
           data={data}
           options={{
             // Use the same chart area width as the control for axis alignment.
-            backgroundColor: {'fill': '#30363d',
-              'fillOpacity': 0.1,
-            },
+            backgroundColor: '#30363d',
             chartArea: {
               'width': '100%',
               'left': 45,
@@ -155,7 +152,7 @@ const Chart = (): JSX.Element => {
           {'\n'}
         </Typography>
         <Typography>
-          {mot} sucre
+          {mot}
         </Typography>
         <Typography>
           Concentration maximum des {data.length} mesures: {max} mMol
